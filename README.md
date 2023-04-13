@@ -1,24 +1,11 @@
-# README
+# Repo-Track-Pipeline
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Repo-Track-Pipeline is an open-source tool that can synchronize and analyze any Github repository. This tool is also capable of synchronizing and comparing a group of repositories. Similar to Ossinsight, this tool provides more accurate data and is more flexible to use. Furthermore, the data can be synchronized to your own database and explored using various business intelligence tools.
 
-Things you may want to cover:
+## GitHub Repo Data Sync
 
-* Ruby version
+## Setup Data Pipeline
 
-* System dependencies
+## Table Schema
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Dashboard
