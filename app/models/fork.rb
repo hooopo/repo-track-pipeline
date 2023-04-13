@@ -1,0 +1,2 @@
+class Fork < ApplicationRecord
+end
