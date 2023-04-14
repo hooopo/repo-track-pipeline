@@ -55,3 +55,5 @@ gem "did_you_mean", "~> 1.6"
 gem "geocoder", "~> 1.8"
 
 gem "retryable", "~> 3.0"
+
+gem "bundler", "~> 2.2"

@@ -197,6 +197,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  bundler (~> 2.2)
   debug
   did_you_mean (~> 1.6)
   dotenv-rails
@@ -210,4 +211,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   2.2.3
+   2.4.12
