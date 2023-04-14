@@ -42,7 +42,7 @@ jobs:
         bundle exec rails runner "RetryableRake.db_create"
         bundle exec rails runner "RetryableRake.db_migrate"
 
-    - name: Sync GitHub User Data
+    - name: Sync GitHub Repo Data
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
