@@ -48,4 +48,4 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         REPO_FULL_NAME: ${{ secrets.REPO_FULL_NAME }}
       run: |
-        bundle exec rails runner "SyncRegion.run"
+        bundle exec rails runner "SyncRegion.new.run"
