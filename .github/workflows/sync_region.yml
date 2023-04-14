@@ -1,0 +1,51 @@
+name: Sync User Region Data
+
+on:
+  schedule:
+    - cron: '0 */2 * * *'
+  workflow_dispatch:
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2
+        bundler-cache: true
+
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+
+    - name: Install dependencies
+      run: |
+        bundle install
+
+    - name: Migration
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        REPO_FULL_NAME: ${{ secrets.REPO_FULL_NAME }}
+
+
+      run: |
+        bundle exec rails runner "RetryableRake.db_create"
+        bundle exec rails runner "RetryableRake.db_migrate"
+
+    - name: Sync GitHub User Region
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        REPO_FULL_NAME: ${{ secrets.REPO_FULL_NAME }}
+      run: |
+        bundle exec rails runner "SyncRegion.run"

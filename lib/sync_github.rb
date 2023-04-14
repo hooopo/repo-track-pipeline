@@ -20,8 +20,7 @@ class SyncGithub
       puts "👇 Sync #{repo_full_name} user_id attribute"
       FillUser.run
 
-      puts "👇 Sync #{repo_full_name} Region"
-      SyncRegion.new.run
+      puts "Done"
     end
   end
 end
