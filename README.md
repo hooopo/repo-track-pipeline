@@ -18,6 +18,25 @@ To use Repo-Track-Pipeline, you will need the following:
 - TiDB Cloud connection (free)
 - GitHub Actions
 
+### Setup Data Pipeline
+
+To use this repository as a standalone data pipeline, simply fork this repo, and set the secret variables and the GitHub action will run automatically every 3 hour. This will sync the specified repo's GitHub data to TiDB Cloud.
+
+![image](https://user-images.githubusercontent.com/63877/233130431-cfe9884a-a58e-45de-a702-98b41a370ceb.png)
+
+Environment Secrets
+
+To use this repository, you will need to set the following secrets on GitHub:
+
+| Secret Name | Description |
+| --- | --- |
+| `ACCESS_TOKEN` | A personal access token provided by GitHub, which can be obtained from [Sign in to GitHub · GitHub](https://github.com/settings/tokens). |
+| `DATABASE_URL` | The MySQL connection information in URI format for TiDB Cloud. You will need to register and create a serverless cluster on [https://tidb.cloud](https://tidb.cloud/), and the URI format should contain the necessary information for connecting to the cluster. An example of the DATABASE_URL format is: mysql2://xxx.root:password@hostxx.tidbcloud.com:4000/db_name |
+| `REPO_FULL_NAME` | The full name of the repository, for example: `vercel/next.js`, you can also set multiple repository full names, such as: `vercel/next.js,vercel/vercel` or `remix-run/remix,vercel/next.js`. |
+
+
+⚠️ Make sure you enable GitHub Action for this forked repo.
+
 ## Usage
 
 1. Fork the Repo-Track-Pipeline repository.
