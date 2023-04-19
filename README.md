@@ -24,6 +24,9 @@ You need to create a Github access token through the URL https://github.com/sett
 
 ![image](https://user-images.githubusercontent.com/63877/233134043-569212b0-ea80-4a36-961c-e615741e15f6.png)
 
+### Register a MySQL cloud service
+
+Register TiDB Cloud at https://tidbcloud.com/signup. Of course, you can also choose other cloud databases compatible with MySQL or RDS without vendor locking, such as PlanetScale and AWS RDS.
 
 ### Setup Data Pipeline
 
