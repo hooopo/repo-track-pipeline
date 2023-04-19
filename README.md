@@ -37,6 +37,9 @@ To use this repository, you will need to set the following secrets on GitHub:
 
 ⚠️ Make sure you enable GitHub Action for this forked repo.
 
+![image](https://user-images.githubusercontent.com/63877/233132878-b6879d1c-272b-4db5-93f6-587f4d64b72a.png)
+
+
 ## Usage
 
 1. Fork the Repo-Track-Pipeline repository.
