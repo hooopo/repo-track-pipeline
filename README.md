@@ -5,7 +5,7 @@ Repo-Track-Pipeline is an open-source tool that allows you to sync repository da
 
 ## Features
 
-- You own your data. With Repo-Track-Pipeline, you can synchronize your own repos or a group of interesting repos to your own database. Afterwards, you can provide an API for your own service or use BI tools to query the data. You have complete control over the data.
+- You own your data. With repo-track-pipeline, you can synchronize your own repos or a group of interesting repos to your own database. Afterwards, you can provide an API for your own service or use BI tools to query the data. You have complete control over the data.
 - Single repo analytics: Analyze data from a single repository.
 - Multiple repo analytics: Merge data from multiple repositories into one, useful for repositories that are split into multiple small repositories.
 - Similar repo analytics: Compare collections of repositories. [Bitcoin vs Auto-GPT](https://bitcoin-vs-autogpt.vercel.app/) [[Source](https://github.com/gh-viz/bitcoin-vs-autogpt)]
