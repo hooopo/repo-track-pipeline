@@ -5,15 +5,15 @@ Repo-Track-Pipeline is an open-source tool that allows you to sync repository da
 
 ## Features
 
-- You own your data. With "repo track pipeline", you can synchronize your own repos or a group of interesting repos to your own database. Afterwards, you can provide an API for your own service or use BI tools to query the data. You have complete control over the data.
+- You own your data. With Repo-Track-Pipeline, you can synchronize your own repos or a group of interesting repos to your own database. Afterwards, you can provide an API for your own service or use BI tools to query the data. You have complete control over the data.
 - Single repo analytics: Analyze data from a single repository.
 - Multiple repo analytics: Merge data from multiple repositories into one, useful for repositories that are split into multiple small repositories.
 - Similar repo analytics: Compare collections of repositories. [Bitcoin vs Auto-GPT](https://bitcoin-vs-autogpt.vercel.app/) [[Source](https://github.com/gh-viz/bitcoin-vs-autogpt)]
-- Fake GitHub Star detection: The tool syncs star user data and contributor data (including follower count, registration time, etc.), making it easy to identify repositories with fake stars.
+- Fake GitHub Star detection: The tool syncs starred user data and contributor data (including follower count, registration time, etc.), making it easy to identify repositories with fake stars.
 
 ## Requirements
 
-To use Repo-Track-Pipeline, you will need the following:
+To use repo-track-pipeline, you will need the following:
 
 - GitHub personal access token
 - Cloud database service account
@@ -42,7 +42,7 @@ To use this repository, you will need to set the following secrets on GitHub:
 | Secret Name | Description |
 | --- | --- |
 | `ACCESS_TOKEN` | A personal access token provided by GitHub, which can be obtained from [Sign in to GitHub · GitHub](https://github.com/settings/tokens). |
-| `DATABASE_URL` | The MySQL connection information in URI format for TiDB Cloud. You will need to register and create a serverless cluster on [https://tidb.cloud](https://tidb.cloud/), and the URI format should contain the necessary information for connecting to the cluster. An example of the DATABASE_URL format is: mysql2://xxx.root:password@hostxx.tidbcloud.com:4000/db_name |
+| `DATABASE_URL` | The MySQL connection information in uri format for TiDB Cloud. You will need to register and create a serverless cluster on [https://tidb.cloud](https://tidb.cloud/), and the URI format should contain the necessary information for connecting to the cluster. An example of the DATABASE_URL format is: mysql2://xxx.root:password@hostxx.tidbcloud.com:4000/db_name |
 | `REPO_FULL_NAME` | The full name of the repository, for example: `vercel/next.js`, you can also set multiple repository full names, such as: `vercel/next.js,vercel/vercel` or `remix-run/remix,vercel/next.js`. |
 
 
@@ -51,13 +51,13 @@ To use this repository, you will need to set the following secrets on GitHub:
 ![image](https://user-images.githubusercontent.com/63877/233132878-b6879d1c-272b-4db5-93f6-587f4d64b72a.png)
 
 
-Note: Repo-Track-Pipeline is crash-safe. If the pipeline fails for any reason, you can manually run GitHub Actions again without worrying about data corruption. Additionally, GitHub Actions will automatically run every 3 hours.
+Note: repo-track-pipeline is crash-safe. If the pipeline fails for any reason, you can manually run GitHub Actions again without worrying about data corruption. Additionally, GitHub Actions will automatically run every 3 hours.
 
 ## FAQ
 
 ### Difference with [OSSInsight](https://ossinsight.io/)
 
-The difference between "repo track pipeline" and "OSSInsight" is that the data for "repo track pipeline" comes from GitHub GraphQL API. As long as you have a GitHub access token, you can use an incremental way to synchronize all public data for the project (including the repo, pull request, issue, stars, users, etc.), and all of this data is accurate. On the other hand, the data for "OSSInsight" comes from gharchive, which in turn comes from the GitHub REST API. Due to the limitations of the GitHub API and the stability issues of the gharchive service, the data is less accurate, and some dimensional data may be missing, such as user information.
+The difference between repo-track-pipeline and OSSInsight is that the data for repo-track-pipeline comes from GitHub GraphQL API. As long as you have a GitHub access token, you can use an incremental way to synchronize all public data for the project (including the repo, pull request, issue, stars, users, etc.), and all of this data is accurate. On the other hand, the data for OSSInsight comes from gharchive.org, which in turn comes from the GitHub REST API. Due to the limitations of the GitHub API and the stability issues of the gharchive service, the data is less accurate, and some dimensional data may be missing, such as user information.
 
 ## Contributing
 
