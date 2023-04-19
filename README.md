@@ -16,7 +16,7 @@ Repo-Track-Pipeline is an open-source tool that allows you to sync repository da
 To use Repo-Track-Pipeline, you will need the following:
 
 - GitHub personal access token
-- TiDB Cloud connection (free)
+- Cloud database service account
 - GitHub Actions
 
 ### Get GitHub personal access token
@@ -50,14 +50,6 @@ To use this repository, you will need to set the following secrets on GitHub:
 
 ![image](https://user-images.githubusercontent.com/63877/233132878-b6879d1c-272b-4db5-93f6-587f4d64b72a.png)
 
-
-## Usage
-
-1. Fork the Repo-Track-Pipeline repository.
-2. Enable GitHub Actions manually, as shown in the image.
-3. Set up a personal access token in GitHub.
-4. Set up a TiDB Cloud connection.
-5. Add the access token and database URL to your GitHub repository secrets.
 
 Note: Repo-Track-Pipeline is crash-safe. If the pipeline fails for any reason, you can manually run GitHub Actions again without worrying about data corruption. Additionally, GitHub Actions will automatically run every 3 hours.
 
