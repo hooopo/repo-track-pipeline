@@ -54,6 +54,11 @@ To use this repository, you will need to set the following secrets on GitHub:
 
 Note: repo-track-pipeline is crash-safe. If the pipeline fails for any reason, you can manually run GitHub Actions again without worrying about data corruption. Additionally, GitHub Actions will automatically run every 3 hours.
 
+The first time you try, you can manually trigger the GitHub Action:
+
+![image](https://user-images.githubusercontent.com/63877/233193625-e5c4abad-33d0-440f-94d7-8532742a71a8.png)
+
+
 ## FAQ
 
 ### Difference with [OSSInsight](https://ossinsight.io/)
