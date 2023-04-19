@@ -36,9 +36,9 @@ To use this repository as a standalone data pipeline, simply fork this repo, and
 
 ![image](https://user-images.githubusercontent.com/63877/233130431-cfe9884a-a58e-45de-a702-98b41a370ceb.png)
 
-Environment Secrets
+Action Secrets
 
-To use this repository, you will need to set the following secrets on GitHub:
+To use this repository, you will need to set the following action secrets on GitHub:
 
 | Secret Name | Description |
 | --- | --- |
