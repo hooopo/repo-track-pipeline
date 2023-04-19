@@ -10,6 +10,7 @@ Repo-Track-Pipeline is an open-source tool that allows you to sync repository da
 - Multiple repo analytics: Merge data from multiple repositories into one, useful for repositories that are split into multiple small repositories.
 - Similar repo analytics: Compare collections of repositories. [Bitcoin vs Auto-GPT](https://bitcoin-vs-autogpt.vercel.app/) [[Source](https://github.com/gh-viz/bitcoin-vs-autogpt)]
 - Fake GitHub Star detection: The tool syncs starred user data and contributor data (including follower count, registration time, etc.), making it easy to identify repositories with fake stars.
+- The capability to synchronize private repository data
 
 ## Requirements
 
@@ -21,7 +22,7 @@ To use repo-track-pipeline, you will need the following:
 
 ### Get GitHub personal access token
 
-You need to create a Github access token through the URL https://github.com/settings/tokens/new. Note that this token does not require additional privileges and is only used to read public repository information. If you want to synchronize information from your private repositories as well, you can check the "repo" box.
+You need to create a Github access token through the url https://github.com/settings/tokens/new . Note that this token does not require additional privileges and is only used to read public repository information. If you want to synchronize information from your private repositories as well, you can check the "repo" box.
 
 ![image](https://user-images.githubusercontent.com/63877/233134043-569212b0-ea80-4a36-961c-e615741e15f6.png)
 
