@@ -18,6 +18,11 @@ To use Repo-Track-Pipeline, you will need the following:
 - TiDB Cloud connection (free)
 - GitHub Actions
 
+### Get GitHub personal access token
+
+![image](https://user-images.githubusercontent.com/63877/233134043-569212b0-ea80-4a36-961c-e615741e15f6.png)
+
+
 ### Setup Data Pipeline
 
 To use this repository as a standalone data pipeline, simply fork this repo, and set the secret variables and the GitHub action will run automatically every 3 hour. This will sync the specified repo's GitHub data to TiDB Cloud.
