@@ -8,7 +8,7 @@ Repo-Track-Pipeline is an open-source tool that allows you to sync repository da
 - You own your data. With "repo track pipeline", you can synchronize your own repos or a group of interesting repos to your own database. Afterwards, you can provide an API for your own service or use BI tools to query the data. You have complete control over the data.
 - Single repo analytics: Analyze data from a single repository.
 - Multiple repo analytics: Merge data from multiple repositories into one, useful for repositories that are split into multiple small repositories.
-- Similar repo analytics: Compare collections of repositories. [Bitcoin vs Auto-GPT](https://bitcoin-vs-autogpt.vercel.app/) [Source](https://github.com/gh-viz/bitcoin-vs-autogpt)
+- Similar repo analytics: Compare collections of repositories. [Bitcoin vs Auto-GPT](https://bitcoin-vs-autogpt.vercel.app/) [[Source](https://github.com/gh-viz/bitcoin-vs-autogpt)]
 - Fake GitHub Star detection: The tool syncs star user data and contributor data (including follower count, registration time, etc.), making it easy to identify repositories with fake stars.
 
 ## Requirements
