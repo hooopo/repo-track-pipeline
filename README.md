@@ -60,6 +60,12 @@ To use this repository, you will need to set the following secrets on GitHub:
 
 Note: Repo-Track-Pipeline is crash-safe. If the pipeline fails for any reason, you can manually run GitHub Actions again without worrying about data corruption. Additionally, GitHub Actions will automatically run every 3 hours.
 
+## FAQ
+
+### Difference with [OSSInsight](https://ossinsight.io/)
+
+The difference between "repo track pipeline" and "OSSInsight" is that the data for "repo track pipeline" comes from GitHub GraphQL API. As long as you have a GitHub access token, you can use an incremental way to synchronize all public data for the project (including the repo, pull request, issue, stars, users, etc.), and all of this data is accurate. On the other hand, the data for "OSSInsight" comes from gharchive, which in turn comes from the GitHub REST API. Due to the limitations of the GitHub API and the stability issues of the gharchive service, the data is less accurate, and some dimensional data may be missing, such as user information.
+
 ## Contributing
 
 Contributions to Repo-Track-Pipeline are welcome! If you find a bug or have an idea for a new feature, please open an issue or submit a pull request.
