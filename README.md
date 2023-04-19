@@ -20,6 +20,8 @@ To use Repo-Track-Pipeline, you will need the following:
 
 ### Get GitHub personal access token
 
+You need to create a Github access token through the URL https://github.com/settings/tokens/new. Note that this token does not require additional privileges and is only used to read public repository information. If you want to synchronize information from your private repositories as well, you can check the "repo" box.
+
 ![image](https://user-images.githubusercontent.com/63877/233134043-569212b0-ea80-4a36-961c-e615741e15f6.png)
 
 
