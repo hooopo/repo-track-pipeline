@@ -65,6 +65,138 @@ The first time you try, you can manually trigger the GitHub Action:
 
 The difference between repo-track-pipeline and OSSInsight is that the data for repo-track-pipeline comes from GitHub GraphQL API. As long as you have a GitHub access token, you can use an incremental way to synchronize all public data for the project (including the repo, pull request, issue, stars, users, etc.), and all of this data is accurate. On the other hand, the data for OSSInsight comes from gharchive.org, which in turn comes from the GitHub REST API. Due to the limitations of the GitHub API and the stability issues of the gharchive service, the data is less accurate, and some dimensional data may be missing, such as user information.
 
+## Schema
+
+### repos
+
+```
++--------------------+--------------+------+-----+---------+----------------+
+| Field              | Type         | Null | Key | Default | Extra          |
++--------------------+--------------+------+-----+---------+----------------+
+| id                 | bigint(20)   | NO   | PRI | <null>  | auto_increment |
+| name               | varchar(255) | YES  |     | <null>  |                |
+| owner              | varchar(255) | YES  |     | <null>  |                |
+| user_id            | bigint(20)   | YES  |     | <null>  |                |
+| license            | varchar(255) | YES  |     | <null>  |                |
+| is_private         | tinyint(1)   | YES  |     | <null>  |                |
+| disk_usage         | int(11)      | YES  |     | <null>  |                |
+| language           | varchar(255) | YES  |     | <null>  |                |
+| description        | text         | YES  |     | <null>  |                |
+| is_fork            | tinyint(1)   | YES  |     | <null>  |                |
+| parent_id          | bigint(20)   | YES  |     | <null>  |                |
+| fork_count         | int(11)      | YES  |     | <null>  |                |
+| stargazer_count    | int(11)      | YES  |     | <null>  |                |
+| pushed_at          | datetime(6)  | YES  |     | <null>  |                |
+| created_at         | datetime(6)  | NO   |     | <null>  |                |
+| updated_at         | datetime(6)  | NO   |     | <null>  |                |
+| is_in_organization | tinyint(1)   | YES  |     | 0       |                |
+| last_issue_cursor  | varchar(255) | YES  |     | <null>  |                |
+| last_star_cursor   | varchar(255) | YES  |     | <null>  |                |
+| last_pr_cursor     | varchar(255) | YES  |     | <null>  |                |
+| last_fork_cursor   | varchar(255) | YES  |     | <null>  |                |
++--------------------+--------------+------+-----+---------+----------------+
+```
+
+### pull_requests
+
+```
++--------------------+--------------+------+-----+---------+----------------+
+| Field              | Type         | Null | Key | Default | Extra          |
++--------------------+--------------+------+-----+---------+----------------+
+| id                 | bigint(20)   | NO   | PRI | <null>  | auto_increment |
+| repo_id            | bigint(20)   | YES  |     | <null>  |                |
+| locked             | tinyint(1)   | YES  |     | <null>  |                |
+| title              | varchar(255) | YES  |     | <null>  |                |
+| closed             | tinyint(1)   | YES  |     | <null>  |                |
+| closed_at          | datetime(6)  | YES  |     | <null>  |                |
+| state              | varchar(255) | YES  |     | <null>  |                |
+| number             | int(11)      | YES  |     | <null>  |                |
+| author             | varchar(255) | YES  | MUL | <null>  |                |
+| user_id            | bigint(20)   | YES  |     | <null>  |                |
+| author_association | varchar(255) | YES  |     | <null>  |                |
+| is_draft           | tinyint(1)   | YES  |     | <null>  |                |
+| additions          | int(11)      | YES  |     | 0       |                |
+| deletions          | int(11)      | YES  |     | 0       |                |
+| merged_at          | datetime(6)  | YES  |     | <null>  |                |
+| merged_by          | varchar(255) | YES  |     | <null>  |                |
+| changed_files      | int(11)      | YES  |     | 0       |                |
+| merged             | tinyint(1)   | YES  |     | <null>  |                |
+| comments_count     | int(11)      | YES  |     | 0       |                |
+| created_at         | datetime(6)  | NO   | MUL | <null>  |                |
+| updated_at         | datetime(6)  | NO   | MUL | <null>  |                |
++--------------------+--------------+------+-----+---------+----------------+
+```
+
+### issues
+
+```
++--------------------+--------------+------+-----+---------+----------------+
+| Field              | Type         | Null | Key | Default | Extra          |
++--------------------+--------------+------+-----+---------+----------------+
+| id                 | bigint(20)   | NO   | PRI | <null>  | auto_increment |
+| repo_id            | bigint(20)   | YES  |     | <null>  |                |
+| locked             | tinyint(1)   | YES  |     | <null>  |                |
+| title              | varchar(255) | YES  |     | <null>  |                |
+| closed             | tinyint(1)   | YES  |     | <null>  |                |
+| closed_at          | datetime(6)  | YES  |     | <null>  |                |
+| state              | varchar(255) | YES  |     | <null>  |                |
+| number             | int(11)      | YES  |     | <null>  |                |
+| author             | varchar(255) | YES  | MUL | <null>  |                |
+| user_id            | bigint(20)   | YES  | MUL | <null>  |                |
+| author_association | varchar(255) | YES  |     | <null>  |                |
+| created_at         | datetime(6)  | NO   | MUL | <null>  |                |
+| updated_at         | datetime(6)  | NO   | MUL | <null>  |                |
++--------------------+--------------+------+-----+---------+----------------+
+```
+
+### users
+
+```
++------------------+--------------+------+-----+---------+----------------+
+| Field            | Type         | Null | Key | Default | Extra          |
++------------------+--------------+------+-----+---------+----------------+
+| id               | bigint(20)   | NO   | PRI | <null>  | auto_increment |
+| login            | varchar(255) | NO   |     | <null>  |                |
+| company          | varchar(255) | YES  |     | <null>  |                |
+| location         | varchar(255) | YES  |     | <null>  |                |
+| twitter_username | varchar(255) | YES  |     | <null>  |                |
+| followers_count  | int(11)      | YES  |     | 0       |                |
+| following_count  | int(11)      | YES  |     | 0       |                |
+| region           | varchar(255) | YES  |     | <null>  |                |
+| created_at       | varchar(255) | NO   |     | <null>  |                |
+| updated_at       | varchar(255) | NO   |     | <null>  |                |
++------------------+--------------+------+-----+---------+----------------+
+```
+
+### starred_repos
+
+```
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| user_id    | bigint(20)  | NO   | MUL | <null>  |       |
+| repo_id    | bigint(20)  | NO   |     | <null>  |       |
+| starred_at | datetime(6) | NO   |     | <null>  |       |
++------------+-------------+------+-----+---------+-------+
+```
+
+### forks
+
+```
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | bigint(20)   | NO   | PRI | <null>  | auto_increment |
+| parent     | bigint(20)   | YES  | MUL | <null>  |                |
+| author     | varchar(255) | YES  | MUL | <null>  |                |
+| user_id    | bigint(20)   | YES  |     | <null>  |                |
+| name       | varchar(255) | YES  |     | <null>  |                |
+| created_at | datetime(6)  | NO   | MUL | <null>  |                |
+| updated_at | datetime(6)  | NO   | MUL | <null>  |                |
++------------+--------------+------+-----+---------+----------------+
+```
+
+
 ## Contributing
 
 Contributions to Repo-Track-Pipeline are welcome! If you find a bug or have an idea for a new feature, please open an issue or submit a pull request.
