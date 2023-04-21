@@ -30,7 +30,7 @@ You need to create a Github access token through the url https://github.com/sett
 
 Register TiDB Cloud at https://tidbcloud.com/signup. Of course, you can also choose other cloud databases compatible with MySQL or RDS without vendor locking, such as PlanetScale and AWS RDS.
 
-### Setup Data Pipeline
+### Setup GitHub Action
 
 To use this repository as a standalone data pipeline, simply fork this repo, and set the secret variables and the GitHub action will run automatically every 3 hour. This will sync the specified repo's GitHub data to TiDB Cloud.
 
