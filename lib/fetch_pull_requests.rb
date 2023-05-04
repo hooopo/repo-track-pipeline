@@ -37,6 +37,14 @@ class FetchPullRequests
                 createdAt
                 updatedAt
                 title
+                labels(first: 100) {
+                  edges {
+                    node {
+                      name
+                      id
+                    }
+                  }
+                }
                 author {
                   login
                 }
@@ -83,11 +91,13 @@ class FetchPullRequests
 
       data = fetch_data(cusor)
       attrs = get_attr_list(data)
+      label_attrs = get_label_attr_list(data)
       if attrs.blank?
         puts "All pull requets synced successed"
         break
       else
-        PullRequest.upsert_all(attrs)
+        PullRequest.upsert_all(attrs) if attrs.present?
+        Label.upsert_all(label_attrs) if label_attrs.present?
       end
       cusor = end_cusor(data)
       
@@ -129,6 +139,26 @@ class FetchPullRequests
 
   def has_next_page(data)
     data.dig("data", "repository", "pullRequests", "pageInfo", "hasNextPage")
+  end
+
+  def get_label_attr_list(data)
+    edges = data.dig("data", "repository", "pullRequests", "edges")
+    if edges.nil?
+      puts data["errors"]
+      raise "GitHub API issue, please try again later"
+    end
+    edges.map do |edge|
+      hash = edge["node"]
+      hash.dig("labels", "edges").map do |label|
+        label_hash = label["node"]
+        {
+          repo_id: repo.id,
+          name: label_hash["name"],
+          item_id: hash["databaseId"],
+          item_type: "PullRequest"
+        }
+      end
+    end.select { |x| x.present?}.flatten.uniq
   end
 
   def get_attr_list(data)
