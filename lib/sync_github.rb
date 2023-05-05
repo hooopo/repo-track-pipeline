@@ -1,8 +1,14 @@
 class SyncGithub
   def self.run!
-    raise("REPO_FULL_NAME env missing, please set it") if ENV["REPO_FULL_NAME"].blank?
-    ENV["REPO_FULL_NAME"].split(",").each do |repo_full_name|
-      puts "👉 Sync repo #{repo_full_name} info #{ENV['REPO_FULL_NAME']}"
+    if ENV["REPO_FULL_NAME"].present?
+      ENV["REPO_FULL_NAME"].split(",").each do |repo_full_name|
+        RepoFullNameConfig.find_or_create_by(full_name: repo_full_name)
+      end
+    end
+
+    RepoFullNameConfig.all.each do |config|
+      repo_full_name = config.full_name
+      puts "👉 Sync repo #{repo_full_name} of #{ RepoFullNameConfig.all.map{|c| c.full_name }.join(', ') }"
       FetchRepo.new(repo_full_name).run 
 
       puts "👇 Sync #{repo_full_name} Issues"

@@ -1,0 +1,2 @@
+class RepoFullNameConfig < ApplicationRecord
+end
