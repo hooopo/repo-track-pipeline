@@ -34,7 +34,7 @@ jobs:
     - name: Migration
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN || secrets.GITHUB_TOKEN }}
         REPO_FULL_NAME: ${{ secrets.REPO_FULL_NAME }}
 
 
@@ -45,7 +45,7 @@ jobs:
     - name: Sync GitHub Repo Data
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN || secrets.GITHUB_TOKEN}}
         REPO_FULL_NAME: ${{ secrets.REPO_FULL_NAME }}
       run: |
         bundle exec rails runner "SyncGithub.run!"
