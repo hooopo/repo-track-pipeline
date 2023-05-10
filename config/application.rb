@@ -27,5 +27,6 @@ module Reshape
     config.log_level = :debug
     config.autoload_paths << "#{root}/lib"
     config.add_autoload_paths_to_load_path = true
+    config.active_record.dump_schema_after_migration = false
   end
 end
