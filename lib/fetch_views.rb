@@ -20,9 +20,9 @@ class FetchViews
     )
 
     data = response.parse
-    puts data
-    if data["message"]
-      puts "Must have push access to repository: #{data["documentation_url"]}"
+   
+    if data["views"].nil?
+      puts "#{data["message"]}: #{data["documentation_url"]}"
     else
       attrs = data["views"].map do |view|
         {

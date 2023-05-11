@@ -21,8 +21,8 @@ class FetchClones
 
     data = response.parse
 
-    if data["message"] == "Must have push access to repository"
-      puts "Must have push access to repository: #{data["documentation_url"]}"
+    if data["clones"].nil?
+      puts "#{data["message"]}: #{data["documentation_url"]}"
     else
       attrs = data["clones"].map do |view|
         {
