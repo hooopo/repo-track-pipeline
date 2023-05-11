@@ -1,0 +1,2 @@
+class Clone < ApplicationRecord
+end
