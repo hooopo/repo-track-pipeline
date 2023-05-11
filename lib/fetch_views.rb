@@ -20,7 +20,7 @@ class FetchViews
     )
 
     data = response.parse
-
+    puts data
     if data["message"]
       puts "Must have push access to repository: #{data["documentation_url"]}"
     else
