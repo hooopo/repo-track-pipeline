@@ -1,5 +1,5 @@
 class SyncGithub
-  def self.run!
+  def self.sync!
     if ENV["REPO_FULL_NAME"].present?
       ENV["REPO_FULL_NAME"].split(",").each do |repo_full_name|
         RepoFullNameConfig.find_or_create_by(full_name: repo_full_name)
@@ -33,6 +33,12 @@ class SyncGithub
       FillUser.run
 
       puts "Done"
+    end
+  end
+
+  def self.run!
+    JobLog.with_log("SyncGithub") do
+      self.sync!
     end
   end
 end
