@@ -31,6 +31,7 @@ class FetchRepo
           parent {
             databaseId
           }
+          openGraphImageUrl
           description
           forkCount
           stargazerCount
@@ -61,7 +62,7 @@ class FetchRepo
       is_in_organization: base["isInOrganization"],
       is_private: base["isPrivate"],
       disk_usage: base["diskUsage"],
-      
+      open_graph_image_url: base["openGraphImageUrl"],
       description: base["description"],
       stargazer_count: base["stargazerCount"],
       fork_count: base["forkCount"],
