@@ -122,7 +122,7 @@ class FetchStars
     edges = data.dig("data", "repository", "stargazers", "edges")
     if edges.nil?
       puts data["errors"]
-      raise "GitHubb API issue, please try again later"
+      raise "GitHub API issue, please try again later"
     end
     edges.map do |edge|
       hash = edge["node"]
@@ -144,7 +144,7 @@ class FetchStars
     edges = data.dig("data", "repository", "stargazers", "edges")
     if edges.nil?
       puts data["errors"]
-      raise "GitHubb API issue, please try again later"
+      raise "GitHub API issue, please try again later"
     end
     edges.map do |edge|
       starred_at = edge["starredAt"]

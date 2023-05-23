@@ -143,7 +143,7 @@ class FetchForks
     edges = data.dig("data", "repository", "forks", "edges")
     if edges.nil?
       puts data["errors"]
-      raise "GitHubb API issue, please try again later"
+      raise "GitHub API issue, please try again later"
     end
     edges.map do |edge|
       hash = edge["node"]
