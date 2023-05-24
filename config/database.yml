@@ -16,7 +16,6 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 1 } %>
   url: <%= ENV['DATABASE_URL'] %>
   ssl_mode: :verify_identity
-  sslca: "/etc/ssl/cert.pem"
 
 development:
   <<: *default
