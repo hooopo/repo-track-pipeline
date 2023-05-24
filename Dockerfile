@@ -2,7 +2,7 @@
 FROM ruby:3.2
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /github/workspace
 
 # Install MySQL client and development libraries
 RUN apt-get update -qq && \
@@ -19,7 +19,7 @@ ENV ACCESS_TOKEN=$ACCESS_TOKEN
 ENV REPO_FULL_NAME=$REPO_FULL_NAME
 
 # Copy the Gemfile and Gemfile.lock
-COPY Gemfile* /app/
+COPY Gemfile* ./
 
 # Install dependencies
 RUN bundle config set --local without 'development test' && \
@@ -27,7 +27,7 @@ RUN bundle config set --local without 'development test' && \
     rm -rf /usr/local/bundle/cache/*.gem
 
 # Copy the rest of the application
-COPY . /app/
+COPY . .
 
 # Run the migration and sync GitHub Repo Data scripts
 CMD bundle exec rails runner "RetryableRake.db_create" && \

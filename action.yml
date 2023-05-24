@@ -21,6 +21,6 @@ runs:
 
   # Pass the inputs and secret values as environment variables to the Docker container
   env:
-    DATABASE_URL: ${{ inputs.database_url }}
-    ACCESS_TOKEN: ${{ inputs.access_token }}
-    REPO_FULL_NAME: ${{ inputs.repo_full_name }}
+    DATABASE_URL: ${{ inputs.database-url }}
+    ACCESS_TOKEN: ${{ inputs.access-token }}
+    REPO_FULL_NAME: ${{ inputs.repo-full-name }}
