@@ -18,16 +18,10 @@ ENV DATABASE_URL=$DATABASE_URL
 ENV ACCESS_TOKEN=$ACCESS_TOKEN
 ENV REPO_FULL_NAME=$REPO_FULL_NAME
 
-# Copy the Gemfile and Gemfile.lock
-COPY Gemfile* ./
-
 # Install dependencies
 RUN bundle config set --local without 'development test' && \
     bundle install --jobs $(nproc) --retry 3 && \
     rm -rf /usr/local/bundle/cache/*.gem
-
-# Copy the rest of the application
-COPY . .
 
 # Run the migration and sync GitHub Repo Data scripts
 CMD bundle exec rails runner "RetryableRake.db_create" && \
