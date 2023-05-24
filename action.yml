@@ -41,7 +41,6 @@ runs:
     - name: Install dependencies
       run: |
         bundle install
-      shell: bash
 
     - name: Migration
       with:
@@ -51,7 +50,6 @@ runs:
       run: |
         bundle exec rails runner "RetryableRake.db_create"
         bundle exec rails runner "RetryableRake.db_migrate"
-      shell: bash
 
     - name: Sync GitHub Repo Data
       with:
@@ -60,4 +58,3 @@ runs:
         repo-full-name: ${{ inputs.repo-full-name }}
       run: |
         bundle exec rails runner "SyncGithub.run!"
-      shell: bash
