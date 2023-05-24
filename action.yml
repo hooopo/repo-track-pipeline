@@ -21,72 +21,43 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Create run.yml
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2
+        bundler-cache: true
+
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+
+    - name: Install dependencies
       run: |
-        cat >> run.yml <<EOL
-        name: Sync GitHub Repo Data
-
-        on:
-          schedule:
-            - cron: ${{ inputs.schedule }}
-          workflow_dispatch:
-
-        jobs:
-          run_script:
-            runs-on: ubuntu-latest
-
-            steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-
-            - name: Set up Ruby
-              uses: ruby/setup-ruby@v1
-              with:
-                ruby-version: 3.2
-                bundler-cache: true
-
-            - name: Cache dependencies
-              uses: actions/cache@v2
-              with:
-                path: ~/.bundle
-                key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-                restore-keys: |
-                  ${{ runner.os }}-gems-
-
-            - name: Install dependencies
-              run: |
-                bundle install
-
-            - name: Migration
-              env:
-                DATABASE_URL: ${{ secrets.DATABASE_URL }}
-                ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN || secrets.GITHUB_TOKEN }}
-                REPO_FULL_NAME: ${{ secrets.REPO_FULL_NAME }}
-
-              run: |
-                bundle exec rails runner "RetryableRake.db_create"
-                bundle exec rails runner "RetryableRake.db_migrate"
-
-            - name: Sync GitHub Repo Data
-              env:
-                DATABASE_URL: ${{ secrets.DATABASE_URL }}
-                ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN || secrets.GITHUB_TOKEN}}
-                REPO_FULL_NAME: ${{ secrets.REPO_FULL_NAME }}
-              run: |
-                bundle exec rails runner "SyncGithub.run!"
-
-            - name: Rebuild Evidence
-              run: |
-                if [ -n "${{ secrets.BUILD_HOOK }}" ]; then
-                  curl -X POST -d {} ${{ secrets.BUILD_HOOK }}
-                fi
-        EOL
+        bundle install
       shell: bash
-    - name: Setup action
+
+    - name: Migration
+      with:
+        database-url: ${{ inputs.database-url }}
+        access-token: ${{ inputs.access-token || inputs.github-token }}
+        repo-full-name: ${{ inputs.repo-full-name }}
       run: |
-        echo "starting..."
-        echo "repository full name: ${{ inputs.repo-full-name }}"
-        echo "access token: ${{ inputs.access-token }}"
-        echo "database url: ${{ inputs.database-url }}"
-        echo "build hook: ${{ inputs.build-hook }}"
+        bundle exec rails runner "RetryableRake.db_create"
+        bundle exec rails runner "RetryableRake.db_migrate"
+      shell: bash
+
+    - name: Sync GitHub Repo Data
+      with:
+        database-url: ${{ inputs.database-url }}
+        access-token: ${{ inputs.access-token || inputs.github-token }}
+        repo-full-name: ${{ inputs.repo-full-name }}
+      run: |
+        bundle exec rails runner "SyncGithub.run!"
       shell: bash
