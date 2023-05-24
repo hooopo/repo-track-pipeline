@@ -19,7 +19,7 @@ ENV ACCESS_TOKEN=$ACCESS_TOKEN
 ENV REPO_FULL_NAME=$REPO_FULL_NAME
 
 # Copy the Gemfile and Gemfile.lock
-COPY Gemfile* ./
+COPY Gemfile* /github/workspace
 
 # Install dependencies
 RUN bundle config set --local without 'development test' && \
@@ -27,7 +27,7 @@ RUN bundle config set --local without 'development test' && \
     rm -rf /usr/local/bundle/cache/*.gem
 
 # Copy the rest of the application
-COPY . .
+COPY . /github/workspace
 
 # Run the migration and sync GitHub Repo Data scripts
 CMD ls && pwd && bundle exec rails runner "RetryableRake.db_create" && \
