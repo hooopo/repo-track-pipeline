@@ -14,47 +14,13 @@ inputs:
   repo-full-name:
     description: 'GitHub repository full name'
     required: true
-  build-hook:
-    description: 'Build hook used to trigger rebuilds'
-    required: false
 
 runs:
-  using: 'composite'
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+  using: 'docker'
+  image: 'Dockerfile' 
 
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 3.2
-        bundler-cache: true
-
-    - name: Cache dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/.bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
-
-    - name: Install dependencies
-      run: |
-        bundle install
-
-    - name: Migration
-      with:
-        database-url: ${{ inputs.database-url }}
-        access-token: ${{ inputs.access-token || inputs.github-token }}
-        repo-full-name: ${{ inputs.repo-full-name }}
-      run: |
-        bundle exec rails runner "RetryableRake.db_create"
-        bundle exec rails runner "RetryableRake.db_migrate"
-
-    - name: Sync GitHub Repo Data
-      with:
-        database-url: ${{ inputs.database-url }}
-        access-token: ${{ inputs.access-token || inputs.github-token }}
-        repo-full-name: ${{ inputs.repo-full-name }}
-      run: |
-        bundle exec rails runner "SyncGithub.run!"
+  # Pass the inputs and secret values as environment variables to the Docker container
+  env:
+    DATABASE_URL: ${{ inputs.database_url }}
+    ACCESS_TOKEN: ${{ inputs.access_token }}
+    REPO_FULL_NAME: ${{ inputs.repo_full_name }}
