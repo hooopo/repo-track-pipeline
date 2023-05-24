@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Install MySQL client and development libraries
 RUN apt-get update -qq && \
-    apt-get install -y default-mysql-client libmysqlclient-dev
+    apt-get install -y default-mysql-client default-libmysqlclient-dev
 
 # Set argument variables
 ARG DATABASE_URL
