@@ -36,6 +36,7 @@ class FetchBatchUsers
         company
         location
         twitterUsername
+        avatarUrl
         bio
         createdAt
         updatedAt
@@ -60,6 +61,7 @@ class FetchBatchUsers
         login: base["login"],
         company: base["company"],
         twitter_username: base["twitterUsername"],
+        avatar_url: base["avatarUrl"],
         location: base["location"],
         created_at: base["createdAt"],
         updated_at: base["updatedAt"],

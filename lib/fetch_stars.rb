@@ -41,6 +41,7 @@ class FetchStars
                 createdAt
                 updatedAt
                 twitterUsername
+                avatarUrl
                 bio
                 following {
                   totalCount
@@ -134,6 +135,7 @@ class FetchStars
         created_at: hash["createdAt"],
         updated_at: hash["updatedAt"],
         twitter_username: hash["twitterUsername"],
+        avatar_url: hash["avatarUrl"],
         followers_count: hash["followers"]["totalCount"],
         following_count: hash["following"]["totalCount"],
       }
