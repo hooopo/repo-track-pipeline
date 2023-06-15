@@ -1,5 +1,5 @@
 # Use an Ubuntu-based Ruby image
-FROM ruby:3.2
+FROM ruby:3.2-buster
 
 # Set the working directory
 WORKDIR /
