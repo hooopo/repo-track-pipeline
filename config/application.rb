@@ -6,6 +6,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 Dotenv::Railtie.load
+ENV['DATABASE_URL'] = ENV['DATABASE_URL'].sub(/^mysql:/, "mysql2:") if ENV['DATABASE_URL'].present?
 
 module Reshape
   class Application < Rails::Application
