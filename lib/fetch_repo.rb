@@ -27,6 +27,7 @@ class FetchRepo
           }
           owner {
             login
+            avatarUrl
           }
           parent {
             databaseId
@@ -68,6 +69,7 @@ class FetchRepo
       fork_count: base["forkCount"],
       name: base["name"],
       owner: base.dig("owner", "login"),
+      owner_avatar_url: base.dig("owner", "avatarUrl"),
       language: base.dig("primaryLanguage", "name"),
       license: base.dig("licenseInfo", "name"),
       parent_id: base.dig("parent", "databaseId"),
