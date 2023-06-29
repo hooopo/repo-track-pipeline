@@ -196,6 +196,17 @@ The difference between repo-track-pipeline and OSSInsight is that the data for r
 +------------+--------------+------+-----+---------+----------------+
 ```
 
+## Related repos
+
+* [Oh My GitHub Circles](https://github.com/hooopo/oh-my-github-circles)
+* [Oh My GitHub Pipeline](https://github.com/hooopo/oh-my-github-pipeline)
+* [Repo Contributor Circles](https://github.com/hooopo/repo-contributor-circles)
+* [Repo Track Pipeline](https://github.com/hooopo/repo-track-pipeline)
+* [OSSInsight Lite](https://github.com/pingcap/ossinsight-lite)
+* [OSSInsight](https://github.com/pingcap/ossinsight)
+* [Hackernews Insight](https://github.com/hooopo/hackernews-insight)
+* [Oh My GitHub Dashboard](https://github.com/hooopo/oh-my-github-dashboard)
+
 ## Contributing
 
 Contributions to Repo-Track-Pipeline are welcome! If you find a bug or have an idea for a new feature, please open an issue or submit a pull request.
