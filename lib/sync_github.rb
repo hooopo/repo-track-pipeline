@@ -35,6 +35,12 @@ class SyncGithub
       puts "👇 Sync #{repo_full_name} user_id attribute"
       FillUser.run
 
+      puts "👇 Sync #{repo_full_name} pypi downloads"
+
+      if ENV["PYPI_PACKAGE"].present? && ENV["REPO_FULL_NAME"].split(",").size == 1
+        FetchPypiDownloads.new(repo_full_name, ENV["PYPI_PACKAGE"]).run
+      end
+
       puts "Done"
     end
   end
