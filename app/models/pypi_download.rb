@@ -1,0 +1,2 @@
+class PypiDownload < ApplicationRecord
+end
