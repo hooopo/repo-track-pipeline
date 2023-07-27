@@ -23,4 +23,5 @@ runs:
   env:
     DATABASE_URL: ${{ inputs.database-url }}
     ACCESS_TOKEN: ${{ inputs.access-token }}
+    PYPI_PACKAGE: ${{ inputs.pypi-package }}
     REPO_FULL_NAME: ${{ inputs.repo-full-name }}

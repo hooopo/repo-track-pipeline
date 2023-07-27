@@ -36,6 +36,7 @@ jobs:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN || secrets.GITHUB_TOKEN }}
         REPO_FULL_NAME: ${{ secrets.REPO_FULL_NAME }}
+        PYPI_PACKAGE: ${{ secrets.PYPI_PACKAGE }}
 
 
       run: |
@@ -47,6 +48,7 @@ jobs:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN || secrets.GITHUB_TOKEN}}
         REPO_FULL_NAME: ${{ secrets.REPO_FULL_NAME }}
+        PYPI_PACKAGE: ${{ secrets.PYPI_PACKAGE }}
       run: |
         bundle exec rails runner "SyncGithub.run!"
 
