@@ -43,8 +43,9 @@ To use this repository, you will need to set the following action secrets on Git
 | Secret Name | Description |
 | --- | --- |
 | `ACCESS_TOKEN` | A personal access token provided by GitHub, which can be obtained from [Sign in to GitHub · GitHub](https://github.com/settings/tokens). |
-| `DATABASE_URL` | The MySQL connection information in uri format for TiDB Cloud. You will need to register and create a serverless cluster on [https://tidb.cloud](https://tidb.cloud/), and the URI format should contain the necessary information for connecting to the cluster. An example of the DATABASE_URL format is: mysql2://xxx.root:password@hostxx.tidbcloud.com:4000/db_name |
+| `DATABASE_URL` | The MySQL connection information in uri format for TiDB Cloud. You will need to register and create a serverless cluster on [https://tidb.cloud](https://tidb.cloud/), and the URI format should contain the necessary information for connecting to the cluster. An example of the DATABASE_URL format is: mysql2://user:password@host:port/dbname ![image](https://github.com/hooopo/repo-track-pipeline/assets/63877/dd91bf97-804d-4da8-b613-f5e65018d72d) |
 | `REPO_FULL_NAME` | The full name of the repository, for example: `vercel/next.js`, you can also set multiple repository full names, such as: `vercel/next.js,vercel/vercel` or `remix-run/remix,vercel/next.js`. |
+
 
 
 ⚠️ Make sure you enable GitHub Action for this forked repo.
